@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.re.kitri.kitribook.dao.PostDao">
+    <insert id="insertPost" parameterType="kr.re.kitri.kitribook.model.Post" >
+        INSERT INTO post(author,title,content,likes)
+        VALUES(#{author},#{title},#{content},#{likes})
+    </insert>
+    <update id="updatePost" parameterType="kr.re.kitri.kitribook.model.Post" >
+        UPDATE post SET author =#{author},content=#{content},title=#{title},likes=#{likes} WHERE post_id=#{postId};
+    </update>
+    <delete id="deletePost" parameterType="long">
+        DELETE FROM post WHERE post_id=#{postId}
+    </delete>
+    <select id="selectAllPosts" resultType="kr.re.kitri.kitribook.model.Post">
+        SELECT post_id postId,
+                author,
+                content,
+                title,
+                likes
+        FROM post
+    </select>
+    <select id="selectPostByKey" parameterType="long" resultType="kr.re.kitri.kitribook.model.Post">
+        SELECT post_id postId,
+                author,
+                content,
+                title,
+                likes
+        FROM post
+        WHERE post_id=#{bookId}
+    </select>
+</mapper>
