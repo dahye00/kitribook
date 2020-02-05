@@ -11,7 +11,7 @@ public class KitriBookServiceTest {
 
     @Test
     public void TestRemovePost() {
-
+        long bookId = kitriBookService.removePost(2);
     }
 
     @Test
